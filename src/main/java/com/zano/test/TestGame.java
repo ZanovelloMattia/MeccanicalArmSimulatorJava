@@ -6,7 +6,7 @@ import com.zano.core.entity.Model;
 import com.zano.core.entity.Texture;
 import com.zano.core.lighting.SunLight;
 import com.zano.core.render.MasterRender;
-import com.zano.core.RenderManager;
+//import com.zano.core.RenderManager;
 import com.zano.core.terrains.Terrain;
 import com.zano.core.utils.Consts;
 import org.joml.Vector2f;
@@ -88,22 +88,20 @@ public class TestGame implements ILogic {
         sunLights.add(new SunLight(new Vector3f(1f, 0.9f, 1f), new Vector3f(100, 100, 100), 0.5f));
         sunLights.add(new SunLight(new Vector3f(1f, 1f, 0.9f), new Vector3f(-100, 100, -100), 0.2f));
         sunLights.add(new SunLight(new Vector3f(0.9f, 1f, 1f), new Vector3f(-100, 100, 100), 0.3f));
-        entities.get(2).setRotOfset(0f,0f,0.5f);
-        entities.get(3).setRotOfset(0f,0.5f,0.5f);
-    }
-
-    public void SetOfset1(){
         entities.get(2).setRotOfset(0f,0f,1f);
         entities.get(3).setRotOfset(0f,0.5f,1f);
         entities.get(4).setRotOfset(-0.5f,-0.43f,1f);
         entities.get(5).setRotOfset(0.85f,-0.94f,1.08f);
         entities.get(6).setRotOfset(2.5f,-0.94f,1.08f);
-    }
 
-    public void SetOfset2(){
-        entities.get(4).setRotOfset(0.5f,1.4f,1f);
-        entities.get(5).setRotOfset(0.85f,-0.94f,1.08f);
-        entities.get(6).setRotOfset(2.5f,-0.94f,1.08f);
+        entities.get(4).addEntityTransforms(new Vector3f(0,0,0), new Vector3f(0,0,0), new Vector3f(0f,0f,0f));
+        entities.get(5).addEntityTransforms(new Vector3f(0,0,0), new Vector3f(0,0,0), new Vector3f(2.75f,-1.0325f,0f));
+        entities.get(6).addEntityTransforms(new Vector3f(0,0,0), new Vector3f(0,0,0), new Vector3f(6.05f,-1.03f,0f));
+
+        entities.get(5).addEntityTransforms(new Vector3f(0,0,0), new Vector3f(0,0,0), new Vector3f(0f,0f,0f));
+        entities.get(6).addEntityTransforms(new Vector3f(0,0,0), new Vector3f(0,0,0), new Vector3f(3.3f,0f,0f));
+
+        entities.get(6).addEntityTransforms(new Vector3f(0,0,0), new Vector3f(0,0,0), new Vector3f(0,0,-1f));
     }
 
     @Override
@@ -125,7 +123,6 @@ public class TestGame implements ILogic {
             cameraInc.y = 1;
 
         if(window.isKeyPressed(GLFW.GLFW_KEY_T)){
-            SetOfset1();
             entities.get(2).incRotation(0,0.2f,0);
             entities.get(3).incRotation(0,0.2f,0);
             entities.get(4).incRotation(0,0.2f,0);
@@ -133,38 +130,54 @@ public class TestGame implements ILogic {
             entities.get(6).incRotation(0,0.2f,0);
         }
         if(window.isKeyPressed(GLFW.GLFW_KEY_Y)){
-            SetOfset1();
             entities.get(2).incRotation(0,-0.2f,0);
             entities.get(3).incRotation(0,-0.2f,0);
             entities.get(4).incRotation(0,-0.2f,0);
             entities.get(5).incRotation(0,-0.2f,0);
             entities.get(6).incRotation(0,-0.2f,0);
         }
-        if(window.isKeyPressed(GLFW.GLFW_KEY_U )){// && entities.get(3).getRotation().z < 90){
-            SetOfset1();
+        if(window.isKeyPressed(GLFW.GLFW_KEY_U ) && entities.get(3).getRotation().z < 90){
             entities.get(3).incRotation(0,0,0.2f);
             entities.get(4).incRotation(0,0,0.2f);
             entities.get(5).incRotation(0,0,0.2f);
             entities.get(6).incRotation(0,0,0.2f);
         }
-        if(window.isKeyPressed(GLFW.GLFW_KEY_I)){// && entities.get(3).getRotation().z > -20){
-            SetOfset1();
+        if(window.isKeyPressed(GLFW.GLFW_KEY_I) && entities.get(3).getRotation().z > -20){
             entities.get(3).incRotation(0,0,-0.2f);
             entities.get(4).incRotation(0,0,-0.2f);
             entities.get(5).incRotation(0,0,-0.2f);
             entities.get(6).incRotation(0,0,-0.2f);
         }
         if(window.isKeyPressed(GLFW.GLFW_KEY_G )){// && entities.get(3).getRotation().z < 90){
-            SetOfset2();
-            entities.get(4).incRotation(0,0,0.2f);
-            entities.get(5).incRotation(0,0,0.2f);
-            entities.get(6).incRotation(0,0,0.2f);
+            entities.get(4).incEntityTransformsRot(1,0,0,0.2f);
+            entities.get(5).incEntityTransformsRot(1,0,0,0.2f);
+            entities.get(6).incEntityTransformsRot(1,0,0,0.2f);
         }
         if(window.isKeyPressed(GLFW.GLFW_KEY_H)){// && entities.get(3).getRotation().z > -20){
-            SetOfset2();
-            entities.get(4).incRotation(0,0,-0.2f);
-            entities.get(5).incRotation(0,0,-0.2f);
-            entities.get(6).incRotation(0,0,-0.2f);
+            entities.get(4).incEntityTransformsRot(1,0,0,-0.2f);
+            entities.get(5).incEntityTransformsRot(1,0,0,-0.2f);
+            entities.get(6).incEntityTransformsRot(1,0,0,-0.2f);
+        }
+
+        if(window.isKeyPressed(GLFW.GLFW_KEY_J )){// && entities.get(3).getRotation().z < 90){
+            entities.get(5).incEntityTransformsRot(2,0,0,0.2f);
+            entities.get(6).incEntityTransformsRot(2,0,0,0.2f);
+        }
+        if(window.isKeyPressed(GLFW.GLFW_KEY_K)){// && entities.get(3).getRotation().z > -20){
+            entities.get(5).incEntityTransformsRot(2,0,0,-0.2f);
+            entities.get(6).incEntityTransformsRot(2,0,0,-0.2f);
+        }
+        if(window.isKeyPressed(GLFW.GLFW_KEY_V)){// && entities.get(3).getRotation().z > -20){
+            entities.get(6).incEntityTransformsRot(3,0,0.2f,0);
+        }
+        if(window.isKeyPressed(GLFW.GLFW_KEY_B)){// && entities.get(3).getRotation().z > -20){
+            entities.get(6).incEntityTransformsRot(3,0,-0.2f,0);
+        }
+        if(window.isKeyPressed(GLFW.GLFW_KEY_N)){// && entities.get(3).getRotation().z > -20){
+            entities.get(6).incEntityTransformsRot(3,0,0,0.2f);
+        }
+        if(window.isKeyPressed(GLFW.GLFW_KEY_M)){// && entities.get(3).getRotation().z > -20){
+            entities.get(6).incEntityTransformsRot(3,0,0,-0.2f);
         }
     }
 

@@ -90,7 +90,8 @@ public class MasterRender {
     public void prepare(Entity entity, Camera camera){
         shader.setUniform("textureSampler", 0);
         shader.setUniform("viewMatrix", Transformation.getViewMatrix(camera));
-        Matrix4f trasformationMatrix = Transformation.createTransformationMatrix(entity);
+        entity.updateTransformMatrixes();
+        Matrix4f trasformationMatrix = Transformation.mulMatrix4f(entity.getTransformMatrixes());
         shader.setUniform("transformationMatrix", trasformationMatrix);
     }
 

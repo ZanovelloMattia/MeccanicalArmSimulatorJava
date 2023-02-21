@@ -1,4 +1,4 @@
-package com.zano.core;
+/*package com.zano.core;
 
 import com.zano.core.entity.Entity;
 import com.zano.core.entity.Model;
@@ -117,3 +117,4 @@ public class RenderManager {
     }
 
 }
+*/

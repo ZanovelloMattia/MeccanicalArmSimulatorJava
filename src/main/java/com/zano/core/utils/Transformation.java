@@ -7,20 +7,30 @@ import org.joml.*;
 import java.lang.Math;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
+import java.util.List;
 
 public class Transformation {
 
-    public static Matrix4f createTransformationMatrix(Entity entity) {
+    public static Matrix4f createTransformationMatrix(Vector3f pos, Vector3f rot, Vector3f rotOff, float scale) {
         Matrix4f matrix = new Matrix4f();
-        matrix.identity().translate(entity.getPos().x, entity.getPos().y, entity.getPos().z + 1).
-                translate(entity.getRotOfset().x, entity.getRotOfset().y, entity.getRotOfset().z).
-                rotateX((float) Math.toRadians(entity.getRotation().x)).
-                rotateY((float) Math.toRadians(entity.getRotation().y)).
-                rotateZ((float) Math.toRadians(entity.getRotation().z)).
-                translate(-entity.getRotOfset().x, -entity.getRotOfset().y, -entity.getRotOfset().z).
-                translate(entity.getPos().x, entity.getPos().y, entity.getPos().z - 1).
-                scale(entity.getScale());
+        matrix.identity().translate(pos.x, pos.y, pos.z + 1).
+                translate(rotOff.x, rotOff.y, rotOff.z).
+                rotateX((float) Math.toRadians(rot.x)).
+                rotateY((float) Math.toRadians(rot.y)).
+                rotateZ((float) Math.toRadians(rot.z)).
+                translate(-rotOff.x, -rotOff.y, -rotOff.z).
+                translate(pos.x, pos.y, pos.z - 1).
+                scale(scale);
         return matrix;
+    }
+
+    public static Matrix4f mulMatrix4f(List<Matrix4f> matrixs) {
+        Matrix4f finalMatrix = new Matrix4f();
+        finalMatrix = matrixs.get(0);
+        for(int i = 1; i < matrixs.size(); i++){
+            finalMatrix.mul(matrixs.get(i));
+        }
+        return finalMatrix;
     }
 
     /*
