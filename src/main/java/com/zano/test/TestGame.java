@@ -6,7 +6,6 @@ import com.zano.core.entity.Model;
 import com.zano.core.entity.Texture;
 import com.zano.core.lighting.SunLight;
 import com.zano.core.render.MasterRender;
-//import com.zano.core.RenderManager;
 import com.zano.core.terrains.Terrain;
 import com.zano.core.utils.Consts;
 import org.joml.Vector2f;
@@ -19,7 +18,6 @@ import java.util.List;
 
 public class TestGame implements ILogic {
 
-    //private final RenderManager render;
     private final MasterRender render;
     private final ObjectLoader loader;
     private final WindowsManager window;
