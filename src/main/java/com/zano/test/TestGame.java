@@ -45,9 +45,6 @@ public class TestGame implements ILogic {
     public void init() throws Exception {
         render.init();
 
-        Model model = loader.loadOBJModel("/models/arm1.obj");
-        model.setTexture(new Texture(loader.loadTexture("/textures/verdeAcqua.png")) , 1f);
-
         Model terrainModel = new Terrain(0,0, loader).getModel();
         terrainModel.setTexture(new Texture(loader.loadTexture("/textures/white.png")), 1f);
 
@@ -57,20 +54,18 @@ public class TestGame implements ILogic {
         Model modelRotationArmBase = loader.loadOBJModel("/models/ArmRotationBase.obj");
         modelRotationArmBase.setTexture(new Texture(loader.loadTexture("/textures/verdeAcqua.png")));
 
-        Model modelArm1 = loader.loadOBJModel("/models/Arm1.obj");
+        Model modelArm1 = loader.loadOBJModel("/models/arm1.obj");
         modelArm1.setTexture(new Texture(loader.loadTexture("/textures/verdeAcqua.png")));
 
-        Model modelArm2 = loader.loadOBJModel("/models/Arm2.obj");
+        Model modelArm2 = loader.loadOBJModel("/models/arm2.obj");
         modelArm2.setTexture(new Texture(loader.loadTexture("/textures/verdeAcqua.png")));
 
-        Model modelArm3 = loader.loadOBJModel("/models/Arm3.obj");
+        Model modelArm3 = loader.loadOBJModel("/models/arm3.obj");
         modelArm3.setTexture(new Texture(loader.loadTexture("/textures/verdeAcqua.png")));
 
-        Model modelArm4 = loader.loadOBJModel("/models/Arm4.obj");
+        Model modelArm4 = loader.loadOBJModel("/models/arm4.obj");
         modelArm4.setTexture(new Texture(loader.loadTexture("/textures/verdeAcqua.png")));
 
-        Model dragon = loader.loadOBJModel("/models/dragon.obj");
-        dragon.setTexture(new Texture(loader.loadTexture("/textures/verdeAcqua.png")));
 
         entities = new ArrayList<>();
 
