@@ -5,14 +5,14 @@ import com.zano.core.utils.Utils;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.joml.Vector3i;
-import org.lwjgl.BufferUtils;
+//import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.*;
-import org.lwjgl.stb.STBImage;
-import org.lwjgl.system.MemoryStack;
+//import org.lwjgl.stb.STBImage;
+//import org.lwjgl.system.MemoryStack;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
+//import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -20,14 +20,16 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
-import static org.lwjgl.stb.STBImage.stbi_load_from_memory;
+//import static org.lwjgl.stb.STBImage.stbi_load_from_memory;
 
 public class ObjectLoader {
-    private List<Integer> vaos = new ArrayList<>();
-    private List<Integer> vbos = new ArrayList<>();
-    private List<Integer> textures = new ArrayList<>();
+    private final List<Integer> vaos = new ArrayList<>();
+    private final List<Integer> vbos = new ArrayList<>();
+    private final List<Integer> textures = new ArrayList<>();
 
     public Model loadOBJModel(String filename){
         List<String> lines = Utils.readAllLine(filename);
@@ -120,7 +122,7 @@ public class ObjectLoader {
     private static void processFace(String token, List<Vector3i> faces){
         String[] lineToken = token.split("/");
         int length = lineToken.length;
-        int pos = -1, coords = -1, normal = -1;
+        int pos, coords = -1, normal = -1;
         pos = Integer.parseInt(lineToken[0]) - 1;
         if(length > 1){
             String textCoord = lineToken[1];
@@ -179,7 +181,7 @@ public class ObjectLoader {
         int width = 0;
         int height = 0;
         try (InputStream in = Utils.class.getResourceAsStream(filename)){
-            BufferedImage image = ImageIO.read(in);
+            BufferedImage image = ImageIO.read(Objects.requireNonNull(in));
             if(image == null)
                 throw  new Exception("Image File " + filename + " not loaded");
             width = image.getWidth();
@@ -224,9 +226,9 @@ public class ObjectLoader {
             int width = 0;
             int height = 0;
             try (InputStream in = Utils.class.getResourceAsStream(filename[j])) {
-                BufferedImage image = ImageIO.read(in);
+                BufferedImage image = ImageIO.read(Objects.requireNonNull(in));
                 if (image == null)
-                    throw new Exception("Image File " + filename + " not loaded");
+                    throw new Exception("Image File " + Arrays.toString(filename) + " not loaded");
                 width = image.getWidth();
                 height = image.getHeight();
                 pixels = new int[width * height];

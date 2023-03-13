@@ -26,10 +26,9 @@ public class Camera {
             position.x += (float) Math.sin(Math.toRadians(rotation.y - 90)) * -1.0f * x;
             position.z += (float) Math.cos(Math.toRadians(rotation.y -90)) * x;
         }
-        /*if(position.y >= 0.2f || y > 0) {
+        if(position.y >= 0.2f || y > 0) {
             position.y += y;
-        }*/
-        position.y += y;
+        }
     }
 
     public void setPosition(float x, float y, float z){

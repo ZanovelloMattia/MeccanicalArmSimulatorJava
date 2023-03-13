@@ -25,21 +25,20 @@ public class Entity {
         this.rotation = rotation;
         this.scale = scale;
         this.rotOffSet = new Vector3f(0,0,0);
-        this.entityTransforms = initEntityTransform(); // TODO provare a togliere il return
-        this.transformMatrixes = initTransformMatrixes(); // TODO provare a togliere il return
+        initEntityTransform();
+        initTransformMatrixes();
     }
 
-    private List<Matrix4f> initTransformMatrixes(){
+    private void initTransformMatrixes(){
         transformMatrixes = new ArrayList<>();
         transformMatrixes.add(Transformation.createTransformationMatrix(
                 entityTransforms.get("pos").get(0),
                 entityTransforms.get("rot").get(0),
                 entityTransforms.get("rotOff").get(0),
                 this.scale));
-        return transformMatrixes;
     }
 
-    private HashMap<String, List<Vector3f>> initEntityTransform(){
+    private void initEntityTransform(){
         entityTransforms = new HashMap<>();
         List<Vector3f> pos = new ArrayList<>();
         pos.add(this.pos);
@@ -51,7 +50,6 @@ public class Entity {
         entityTransforms.put("pos", pos);
         entityTransforms.put("rot", rot);
         entityTransforms.put("rotOff", rotOff);
-        return entityTransforms;
     }
 
     public void incPos(float x, float y, float z){
