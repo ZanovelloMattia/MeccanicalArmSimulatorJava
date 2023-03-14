@@ -19,6 +19,7 @@ void main(){
     gl_Position = projectionMatrix * viewMatrix * worldPos;
 
     fragNormal = (transformationMatrix * vec4(normal, 0.0)).xyz;
+
     for(int i = 0; i < 3; i++){
         fragToLightVector[i] = lightPosition[i] - worldPos.xyz;
     }
