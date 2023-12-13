@@ -78,8 +78,12 @@ public class ObjectLoader {
                     break;
             }
         }
-        List<Integer> indices = new ArrayList<>();
+
+
         float[] verticesArr = new float[vertices.size() * 3];
+        float[] texCoordArr = new float[vertices.size() * 2];
+        float[] normalArr = new float[vertices.size() * 3];
+
         int i = 0;
         for(Vector3f pos : vertices){
             verticesArr[i * 3] = pos.x;
@@ -87,8 +91,9 @@ public class ObjectLoader {
             verticesArr[i * 3 + 2] = pos.z;
             i++;
         }
-        float[] texCoordArr = new float[vertices.size() * 2];
-        float[] normalArr = new float[vertices.size() * 3];
+
+
+        List<Integer> indices = new ArrayList<>();
 
         for (Vector3i face : faces){
             processVertex(face.x, face.y, face.z, textures, normals, indices, texCoordArr, normalArr);

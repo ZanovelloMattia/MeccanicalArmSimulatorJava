@@ -46,25 +46,25 @@ public class TestGame implements ILogic {
         render.init();
 
         Model terrainModel = new Terrain(0,0, loader).getModel();
-        terrainModel.setTexture(new Texture(loader.loadTexture("/textures/white.png")), 1f);
+        terrainModel.setTexture(new Texture(loader.loadTexture("/resources/textures/white.png")), 1f);
 
-        Model modelArmBase = loader.loadOBJModel("/models/ArmBase.obj");
-        modelArmBase.setTexture(new Texture(loader.loadTexture("/textures/verdeAcqua.png")));
+        Model modelArmBase = loader.loadOBJModel("/resources/models/ArmBase.obj");
+        modelArmBase.setTexture(new Texture(loader.loadTexture("/resources/textures/verdeAcqua.png")));
 
-        Model modelRotationArmBase = loader.loadOBJModel("/models/ArmRotationBase.obj");
-        modelRotationArmBase.setTexture(new Texture(loader.loadTexture("/textures/verdeAcqua.png")));
+        Model modelRotationArmBase = loader.loadOBJModel("/resources/models/ArmRotationBase.obj");
+        modelRotationArmBase.setTexture(new Texture(loader.loadTexture("/resources/textures/verdeAcqua.png")));
 
-        Model modelArm1 = loader.loadOBJModel("/models/arm1.obj");
-        modelArm1.setTexture(new Texture(loader.loadTexture("/textures/verdeAcqua.png")));
+        Model modelArm1 = loader.loadOBJModel("/resources/models/arm1.obj");
+        modelArm1.setTexture(new Texture(loader.loadTexture("/resources/textures/verdeAcqua.png")));
 
-        Model modelArm2 = loader.loadOBJModel("/models/arm2.obj");
-        modelArm2.setTexture(new Texture(loader.loadTexture("/textures/verdeAcqua.png")));
+        Model modelArm2 = loader.loadOBJModel("/resources/models/arm2.obj");
+        modelArm2.setTexture(new Texture(loader.loadTexture("/resources/textures/verdeAcqua.png")));
 
-        Model modelArm3 = loader.loadOBJModel("/models/arm3.obj");
-        modelArm3.setTexture(new Texture(loader.loadTexture("/textures/verdeAcqua.png")));
+        Model modelArm3 = loader.loadOBJModel("/resources/models/arm3.obj");
+        modelArm3.setTexture(new Texture(loader.loadTexture("/resources/textures/verdeAcqua.png")));
 
-        Model modelArm4 = loader.loadOBJModel("/models/arm4.obj");
-        modelArm4.setTexture(new Texture(loader.loadTexture("/textures/verdeAcqua.png")));
+        Model modelArm4 = loader.loadOBJModel("/resources/models/arm4.obj");
+        modelArm4.setTexture(new Texture(loader.loadTexture("/resources/textures/verdeAcqua.png")));
 
 
         entities = new ArrayList<>();
@@ -193,7 +193,7 @@ public class TestGame implements ILogic {
     public void render() throws Exception{
         if(window.isResize()){
             GL11.glViewport(0, 0, window.getWidth(), window.getHeight());
-            window.setResize(true);
+            window.setResize(false);
         }
 
         render.render(camera, sunLights);

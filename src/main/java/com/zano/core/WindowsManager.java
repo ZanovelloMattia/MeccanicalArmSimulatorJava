@@ -44,10 +44,15 @@ public class WindowsManager {
         GLFW.glfwWindowHint(GLFW.GLFW_OPENGL_PROFILE, GLFW.GLFW_OPENGL_CORE_PROFILE);
         GLFW.glfwWindowHint(GLFW.GLFW_OPENGL_FORWARD_COMPAT, GL11.GL_TRUE);
 
+        GLFWVidMode vidMode = GLFW.glfwGetVideoMode(GLFW.glfwGetPrimaryMonitor());
+        if(vidMode == null) {
+            throw new RuntimeException("Failed to get GLFW video mode");
+        }
+
         boolean maximised = false;
         if(width == 0 || height == 0){
-            width = 100;
-            height = 100;
+            width = vidMode.width();
+            height = vidMode.height();
             GLFW.glfwWindowHint(GLFW.GLFW_MAXIMIZED, GLFW.GLFW_TRUE);
             maximised = true;
         }
@@ -70,7 +75,6 @@ public class WindowsManager {
         if (maximised)
             GLFW.glfwMaximizeWindow(window);
         else {
-            GLFWVidMode vidMode = GLFW.glfwGetVideoMode(GLFW.glfwGetPrimaryMonitor());
             GLFW.glfwSetWindowPos(window, (vidMode.width() - width) / 2,
                     (vidMode.height() - height) / 2);
         }

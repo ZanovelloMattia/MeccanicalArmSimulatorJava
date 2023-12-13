@@ -22,16 +22,19 @@ public class ShaderManager {
 
     public ShaderManager() throws Exception{
         programID = GL20.glCreateProgram();
-        if(programID == 0)
+        if(programID == 0) {
             throw new Exception("Could not create shader");
+        }
 
         uniforms = new HashMap<>();
     }
 
     public void createUniform(String uniformName) throws Exception{
         int uniformLocation = GL20.glGetUniformLocation(programID, uniformName);
-        if (uniformLocation < 0)
-            throw  new Exception("Could not find uniform " + uniformName);
+        if (uniformLocation < 0) {
+            throw new Exception("Could not find uniform " + uniformName);
+        }
+
         uniforms.put(uniformName, uniformLocation);
     }
 
@@ -132,18 +135,22 @@ public class ShaderManager {
 
     public void link() throws Exception{
         GL20.glLinkProgram(programID);
-        if(GL20.glGetProgrami(programID, GL20.GL_LINK_STATUS) == 0)
+        if(GL20.glGetProgrami(programID, GL20.GL_LINK_STATUS) == 0) {
             throw new Exception("Error linking shader code: TYPE: " + " Info " + GL20.glGetProgramInfoLog(programID, 1024));
+        }
 
-        if(vertexShaderID != 0)
+        if(vertexShaderID != 0) {
             GL20.glDetachShader(programID, vertexShaderID);
+        }
 
-        if(fragmentShaderID !=0)
+        if(fragmentShaderID !=0) {
             GL20.glDetachShader(programID, fragmentShaderID);
+        }
 
         GL20.glValidateProgram(programID);
-        if(GL20.glGetProgrami(programID, GL20.GL_VALIDATE_STATUS) == 0)
+        if(GL20.glGetProgrami(programID, GL20.GL_VALIDATE_STATUS) == 0) {
             throw new Exception("Unable to validate shader code: " + GL20.glGetProgramInfoLog(programID, 1024));
+        }
     }
 
     public void bind(){

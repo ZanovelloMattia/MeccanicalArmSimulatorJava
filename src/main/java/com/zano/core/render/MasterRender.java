@@ -40,14 +40,13 @@ public class MasterRender {
 
     public void init() throws Exception{
         shader = new ShaderManager();
-        shader.createVertexShader(Utils.loadResource("/shaders/vertex.vs"));
-        shader.createFragmentShader(Utils.loadResource("/shaders/fragment.fs"));
+        shader.createVertexShader(Utils.loadResource("/resources/shaders/vertex.vs"));
+        shader.createFragmentShader(Utils.loadResource("/resources/shaders/fragment.fs"));
         shader.link();
         shader.createUniform("textureSampler");
         shader.createUniform("transformationMatrix");
         shader.createUniform("projectionMatrix");
         shader.createUniform("viewMatrix");
-        shader.createUniform("lightPosition");
         shader.createSunLightUniform("sunlight");
         shader.createMaterialUniform("material");
         for(int i = 0; i < Consts.MAX_LIGHTS; i++) {
@@ -114,9 +113,9 @@ public class MasterRender {
             }
             unbind();
         }
+        shader.unbind();
         skybox.render(camera, window);
         entities.clear();
-        shader.unbind();
     }
 
     public void processEntity(Entity entity) {

@@ -13,13 +13,13 @@ public class Transformation {
 
     public static Matrix4f createTransformationMatrix(Vector3f pos, Vector3f rot, Vector3f rotOff, float scale) {
         Matrix4f matrix = new Matrix4f();
-        matrix.identity().translate(pos.x, pos.y, pos.z + 1).
+        matrix.identity().translate(pos.x, pos.y, pos.z).
                 translate(rotOff.x, rotOff.y, rotOff.z).
                 rotateX((float) Math.toRadians(rot.x)).
                 rotateY((float) Math.toRadians(rot.y)).
                 rotateZ((float) Math.toRadians(rot.z)).
                 translate(-rotOff.x, -rotOff.y, -rotOff.z).
-                translate(pos.x, pos.y, pos.z - 1).
+                translate(pos.x, pos.y, pos.z).
                 scale(scale);
         return matrix;
     }

@@ -4,11 +4,8 @@ import com.zano.core.Camera;
 import com.zano.core.ObjectLoader;
 import com.zano.core.ShaderManager;
 import com.zano.core.WindowsManager;
-import com.zano.core.entity.Entity;
-import com.zano.core.entity.Material;
 import com.zano.core.entity.Model;
 import com.zano.core.entity.Texture;
-import com.zano.core.lighting.SunLight;
 import com.zano.core.utils.Transformation;
 import com.zano.core.utils.Utils;
 import org.joml.Matrix4f;
@@ -16,8 +13,6 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
-
-import java.util.List;
 
 public class SkyboxRender {
 
@@ -69,20 +64,20 @@ public class SkyboxRender {
             SIZE, -SIZE,  SIZE
     };
 
-    private String[] TEXTURE_FILES = {"/textures/SkyBox/positiveX.png",
-            "/textures/SkyBox/negativeX.png",
-            "/textures/SkyBox/positiveY.png",
-            "/textures/SkyBox/negativeY.png",
-            "/textures/SkyBox/positiveZ.png",
-            "/textures/SkyBox/negativeZ.png"};
+    private String[] TEXTURE_FILES = {"/resources/textures/SkyBox/positiveX.png",
+            "/resources/textures/SkyBox/negativeX.png",
+            "/resources/textures/SkyBox/positiveY.png",
+            "/resources/textures/SkyBox/negativeY.png",
+            "/resources/textures/SkyBox/positiveZ.png",
+            "/resources/textures/SkyBox/negativeZ.png"};
 
     private Model cube;
     private ObjectLoader loader;
 
     public void init() throws Exception{
         shader = new ShaderManager();
-        shader.createVertexShader(Utils.loadResource("/shaders/skyboxVertexShader.vs"));
-        shader.createFragmentShader(Utils.loadResource("/shaders/skyboxFragmentShader.fs"));
+        shader.createVertexShader(Utils.loadResource("/resources/shaders/skyboxVertexShader.vs"));
+        shader.createFragmentShader(Utils.loadResource("/resources/shaders/skyboxFragmentShader.fs"));
         shader.link();
         shader.createUniform("projectionMatrix");
         shader.createUniform("viewMatrix");
